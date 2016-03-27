@@ -26,7 +26,12 @@ import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener{
+/**
+ * xsl  开源地址
+ * https://github.com/Yalantis/Context-Menu.Android
+ */
+
+public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
@@ -52,21 +57,6 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
     }
 
     private List<MenuObject> getMenuObjects() {
-        // You can use any [resource, bitmap, drawable, color] as image:
-        // item.setResource(...)
-        // item.setBitmap(...)
-        // item.setDrawable(...)
-        // item.setColor(...)
-        // You can set image ScaleType:
-        // item.setScaleType(ScaleType.FIT_XY)
-        // You can use any [resource, drawable, color] as background:
-        // item.setBgResource(...)
-        // item.setBgDrawable(...)
-        // item.setBgColor(...)
-        // You can use any [color] as text color:
-        // item.setTextColor(...)
-        // You can set any [color] as divider color:
-        // item.setDividerColor(...)
 
         List<MenuObject> menuObjects = new ArrayList<>();
 
@@ -124,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         if (!fragmentPopped) {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.add(containerId, fragment, backStackName)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             if (addToBackStack)
                 transaction.addToBackStack(backStackName);
             transaction.commit();
@@ -154,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
     public void onBackPressed() {
         if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
             mMenuDialogFragment.dismiss();
-        } else{
+        } else {
             finish();
         }
     }
